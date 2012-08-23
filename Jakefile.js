@@ -1,11 +1,14 @@
 // Copyright (c) 2012 Titanium I.T. LLC. All rights reserved. See LICENSE.txt for details.
 
 /*global desc, task, jake, fail, complete */
-(function() {
+(function () {
 	"use strict";
 
+	desc("Build and test");
+	task("default", ["lint", "test"]);
+
 	desc("Lint everything");
-	task("default", [], function() {
+	task("lint", [], function () {
 		var lint = require("./build/lint/lint_runner.js");
 
 		var files = new jake.FileList();
@@ -16,6 +19,15 @@
 		var passed = lint.validateFileList(files.toArray(), options, {});
 		if (!passed) fail("Lint failed");
 	});
+
+	desc("Test everything");
+	task("test", [], function () {
+		var reporter = require("nodeunit").reporters["default"];
+		reporter.run(['src/_server_test.js'], null, function (failures) {
+			if (failures) fail("Tests failed");
+			complete();
+		});
+	}, {async:true});
 
 	function nodeLintOptions() {
 		return {
