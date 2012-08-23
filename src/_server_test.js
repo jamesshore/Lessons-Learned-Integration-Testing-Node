@@ -8,16 +8,15 @@ exports.test_serverReturnsHelloWorld = function (test) {
 	server.start(8080);
 	var request = http.get("http://localhost:8080");
 	request.on("response", function (response) {
-		var receivedData = false;
+		var responseText = "";
 		response.setEncoding("utf8");
 
-		test.equals(200, response.statusCode, "status code");
 		response.on("data", function (chunk) {
-			receivedData = true;
-			test.equals("Hello World", chunk, "response text");
+			responseText += chunk;
 		});
 		response.on("end", function () {
-			test.ok(receivedData, "should have received response data");
+			test.equals(200, response.statusCode, "status code");
+			test.equals("Hello World", responseText, "response text");
 			server.stop(function () {
 				test.done();
 			});
