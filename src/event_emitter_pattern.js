@@ -11,6 +11,6 @@ http.get("http://google.com", function(response) {
 	});
 
 	response.on("end", function() {
-		console.log("** End of response.")
+		console.log("** End of response.");
 	});
 });
