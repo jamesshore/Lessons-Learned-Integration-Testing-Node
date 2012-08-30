@@ -17,10 +17,10 @@
 		});
 	};
 
-	exports.test_serverReturnsHelloWorld = function(test) {
+	exports.test_respondsToRequests = function(test) {
 		httpGet("http://localhost:8080", function(response, responseText) {
-			test.equals(200, response.statusCode, "status code");
-			test.equals("Hello World", responseText, "response text");
+			test.equals(response.statusCode, 200, "status code");
+			test.equals(responseText, "Hello World", "response text");
 			test.done();
 		});
 	};
