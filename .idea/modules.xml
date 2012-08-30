@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/2_integration_testing_node_http.iml" filepath="$PROJECT_DIR$/.idea/2_integration_testing_node_http.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/3_integration_testing_node_http.iml" filepath="$PROJECT_DIR$/.idea/3_integration_testing_node_http.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/3_integration_testing_node_web.iml" filepath="$PROJECT_DIR$/.idea/3_integration_testing_node_web.iml" />
     </modules>
   </component>
 </project>

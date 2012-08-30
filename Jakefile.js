@@ -22,8 +22,12 @@
 
 	desc("Test everything");
 	task("test", [], function () {
+		var files = new jake.FileList();
+		files.include("**/_*_test.js");
+		files.exclude("node_modules");
+
 		var reporter = require("nodeunit").reporters["default"];
-		reporter.run(['src/_server_test.js'], null, function (failures) {
+		reporter.run(files.toArray(), null, function (failures) {
 			if (failures) fail("Tests failed");
 			complete();
 		});
@@ -36,7 +40,7 @@
 			eqeqeq:true,
 			forin:true,
 			immed:true,
-			latedef:true,
+			latedef:false,
 			newcap:true,
 			noarg:true,
 			noempty:true,

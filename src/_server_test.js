@@ -6,8 +6,9 @@
 	var http = require("http");
 
 	exports.setUp = function(done) {
-		server.start(8080);
-		done();
+		server.start(8080, function() {
+			done();
+		});
 	};
 
 	exports.tearDown = function(done) {
@@ -17,15 +18,15 @@
 	};
 
 	exports.test_serverReturnsHelloWorld = function(test) {
-		simpleGet("http://localhost:8080", function(response, responseText) {
+		httpGet("http://localhost:8080", function(response, responseText) {
 			test.equals(200, response.statusCode, "status code");
 			test.equals("Hello World", responseText, "response text");
 			test.done();
 		});
 	};
 
-	function simpleGet(url, callback) {
-		var request = http.get("http://localhost:8080");
+	function httpGet(url, callback) {
+		var request = http.get(url);
 		request.on("response", function(response) {
 			var responseText = "";
 			response.setEncoding("utf8");
